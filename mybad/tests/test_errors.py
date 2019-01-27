@@ -3,6 +3,8 @@
 #       IMPORTS
 # --------------------------------------
 
+from os import environ as env
+
 import rootpath
 
 rootpath.append()
@@ -10,6 +12,12 @@ rootpath.append()
 from mybad.tests import helper
 
 import mybad
+
+env['COLORS'] = 'true' # lower prio
+env['VERBOSE'] = 'true' # lower prio
+
+env['ERROR_COLORS'] = 'false' # higher prio
+env['ERROR_VERBOSE'] = 'false' # higher prio
 
 
 # =========================================

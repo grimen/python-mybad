@@ -3,6 +3,7 @@
 #       IMPORTS
 # --------------------------------------
 
+import re
 import traceback
 import inspect
 import pprint
@@ -21,22 +22,6 @@ DEFAULT_ERROR_INDENT = 4
 DEFAULT_ERROR_DEPTH = None
 DEFAULT_ERROR_COLORS = True
 DEFAULT_ERROR_VERBOSE = True
-
-ERROR_COLORS = env.get('COLORS', None)
-ERROR_COLORS = ERROR_COLORS or env.get('ERROR_COLORS', None)
-
-if ERROR_COLORS is None:
-    ERROR_COLORS = DEFAULT_ERROR_COLORS
-
-ERROR_COLORS = bool(ERROR_COLORS)
-
-ERROR_VERBOSE = env.get('VERBOSE', None)
-ERROR_VERBOSE = ERROR_VERBOSE or env.get('ERROR_VERBOSE', None)
-
-if ERROR_VERBOSE is None:
-    ERROR_VERBOSE = DEFAULT_ERROR_VERBOSE
-
-ERROR_VERBOSE = bool(ERROR_VERBOSE)
 
 
 # =========================================
@@ -128,6 +113,22 @@ class Error(Exception):
         return '{} {}'.format(_name, self.__str__())
 
     def __str__(self):
+        ERROR_COLORS = env.get('ERROR_COLORS', None)
+        ERROR_COLORS = ERROR_COLORS or env.get('COLORS', None)
+
+        if ERROR_COLORS is None:
+            ERROR_COLORS = DEFAULT_ERROR_COLORS
+
+        ERROR_COLORS = re.search(r'^true|1$', str(ERROR_COLORS), flags = re.IGNORECASE)
+
+        ERROR_VERBOSE = env.get('ERROR_VERBOSE', None)
+        ERROR_VERBOSE = ERROR_VERBOSE or env.get('VERBOSE', None)
+
+        if ERROR_VERBOSE is None:
+            ERROR_VERBOSE = DEFAULT_ERROR_VERBOSE
+
+        ERROR_VERBOSE = re.search(r'^true|1$', str(ERROR_VERBOSE), flags = re.IGNORECASE)
+
         colors = ERROR_COLORS
         verbose = ERROR_VERBOSE
 
