@@ -12,6 +12,7 @@ import inspect
 import pprint
 import types
 import logging
+import inspecta
 
 from os import path, environ
 try:
@@ -19,7 +20,6 @@ try:
     from colour_runner.result import ColourTextTestResult
 except:
     pass
-from pygments import highlight, lexers, formatters
 
 from deepdiff import DeepDiff
 
@@ -149,10 +149,7 @@ def deepdiff(a, b, exclude_types = None):
     return DeepDiff(a, b, ignore_order = True, report_repetition = True, exclude_types = exclude_types)
 
 def pretty(data):
-    result = pprint.pformat(data, indent = 4, depth = None)
-    result = highlight(result, lexers.PythonLexer(), formatters.TerminalFormatter())
-
-    return result
+    return inspecta.inspect(data, indent = 4, depth = None)
 
 def root_path(*args):
     return ROOT_PATH
