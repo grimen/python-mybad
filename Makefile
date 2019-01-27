@@ -8,6 +8,9 @@ BRANCH := $(shell git for-each-ref --format='%(objectname) %(refname:short)' ref
 HASH := $(shell git rev-parse HEAD)
 DATETIME := $(shell date | sed 's/ /./g')
 
+PYTHON_2_VERSION := '2.7.13'
+PYTHON_3_VERSION := '3.7.0'
+
 
 # =========================================
 #       default

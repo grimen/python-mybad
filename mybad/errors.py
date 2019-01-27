@@ -6,9 +6,8 @@
 import re
 import traceback
 import inspect
-import pprint
+import inspecta
 
-from pygments import highlight, lexers, formatters
 from termcolor import colored as color
 
 from os import environ as env
@@ -22,51 +21,6 @@ DEFAULT_ERROR_INDENT = 4
 DEFAULT_ERROR_DEPTH = None
 DEFAULT_ERROR_COLORS = True
 DEFAULT_ERROR_VERBOSE = True
-
-
-# =========================================
-#       HELPERS
-# --------------------------------------
-
-def _inspect(
-    data = None,
-    indent = None,
-    depth = None,
-    colors = False,
-):
-    if indent is None:
-        indent = DEFAULT_ERROR_INDENT
-
-    if depth is None:
-        depth = DEFAULT_ERROR_DEPTH
-
-    if depth == False:
-        depth = None
-
-    if colors is None:
-        colors = DEFAULT_ERROR_COLORS
-
-    result = None
-
-    try:
-        if isinstance(data, dict):
-            data = dict(data)
-
-        result = pprint.pformat(data,
-            indent = indent,
-            depth = depth,
-        )
-
-        if colors:
-            lexer = lexers.PythonLexer()
-            formatter = formatters.TerminalFormatter()
-
-            result = highlight(result, lexer, formatter)
-
-    except Exception as error:
-        pass
-
-    return result
 
 
 # =========================================
@@ -113,24 +67,21 @@ class Error(Exception):
         return '{} {}'.format(_name, self.__str__())
 
     def __str__(self):
-        ERROR_COLORS = env.get('ERROR_COLORS', None)
-        ERROR_COLORS = ERROR_COLORS or env.get('COLORS', None)
+        colors = env.get('ERROR_COLORS', None)
+        colors = colors or env.get('COLORS', None)
 
-        if ERROR_COLORS is None:
-            ERROR_COLORS = DEFAULT_ERROR_COLORS
+        if colors is None:
+            colors = DEFAULT_ERROR_COLORS
 
-        ERROR_COLORS = re.search(r'^true|1$', str(ERROR_COLORS), flags = re.IGNORECASE)
+        colors = re.search(r'^true|1$', str(colors), flags = re.IGNORECASE)
 
-        ERROR_VERBOSE = env.get('ERROR_VERBOSE', None)
-        ERROR_VERBOSE = ERROR_VERBOSE or env.get('VERBOSE', None)
+        verbose = env.get('ERROR_VERBOSE', None)
+        verbose = verbose or env.get('VERBOSE', None)
 
-        if ERROR_VERBOSE is None:
-            ERROR_VERBOSE = DEFAULT_ERROR_VERBOSE
+        if verbose is None:
+            verbose = DEFAULT_ERROR_VERBOSE
 
-        ERROR_VERBOSE = re.search(r'^true|1$', str(ERROR_VERBOSE), flags = re.IGNORECASE)
-
-        colors = ERROR_COLORS
-        verbose = ERROR_VERBOSE
+        verbose = re.search(r'^true|1$', str(verbose), flags = re.IGNORECASE)
 
         string = self.inspect(
             colors = colors,
@@ -158,9 +109,10 @@ class Error(Exception):
             _message = color(_message, 'red')
 
         if verbose:
-            _details = _inspect(self.details,
+            _details = inspecta.inspect(self.details,
                 colors = colors,
             )
+
         else:
             _details = None
 
