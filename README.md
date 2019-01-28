@@ -111,7 +111,7 @@ $ make test-tox
 
 ## Related
 
-- [**`mybase`**](https://github.com/grimen/python-mybase) - *"My library base class - for Python"*
+- [**`mybase`**](https://github.com/grimen/python-mybase) - *"My friendly library base class - for Python"*
 
 
 ## About
