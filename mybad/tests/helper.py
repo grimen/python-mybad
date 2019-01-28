@@ -8,7 +8,6 @@ import os
 import inspect
 import unittest
 import json
-import inspect
 import pprint
 import types
 import logging
