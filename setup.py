@@ -65,7 +65,7 @@ def get_requirements():
 # --------------------------------------
 
 name = 'mybad'
-version = '0.1.1'
+version = '0.1.2'
 description = 'My friendly error base class - for Python.'
 keywords = [
     'error',
