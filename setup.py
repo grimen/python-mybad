@@ -7,8 +7,8 @@ import os
 import glob
 import setuptools
 
-# DISABLED/BUG: this line fails when `pip install totalrecall` but works `pip install .`
-# from totalrecall import __version__
+# DISABLED/BUG: this line fails when `pip install mybad` but works `pip install .`
+# from mybad import __version__
 
 
 # =========================================
@@ -119,14 +119,14 @@ config = {
 
     'packages': packages,
     'package_dir': {
-        'totalrecall': name,
+        name: name,
     },
     'package_data': {
         '': [
             'MIT-LICENSE',
             'README.md',
         ],
-        'totalrecall': [
+        name: [
             '*.*',
         ],
     },
