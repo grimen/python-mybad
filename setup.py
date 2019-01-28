@@ -66,6 +66,20 @@ def get_requirements():
 
 name = 'mybad'
 version = '0.1.0'
+description = 'My friendly error base class - for Python.'
+keywords = [
+    'error',
+    'errors',
+    'baseclass',
+    'meta',
+    'debug',
+    'inspector',
+    'pretty',
+    'color',
+    'colors',
+    'detailed',
+    'stacktrace',
+]
 
 readme = get_readme()
 requirements = get_requirements()
@@ -75,21 +89,8 @@ data_files = find_data_files(['*.*'], os.path.join(name, 'tests', '__fixtures__'
 config = {
     'name': name,
     'version': version,
-    'description': (
-        'Python application configuration - highly inspired by `node-config`.'
-    ),
-    'keywords': [
-        'config',
-        'configuration',
-        'configurations',
-        'settings',
-        'env',
-        'environment',
-        'environments',
-        'application',
-        'node-config',
-        'python-config',
-    ],
+    'description': (description),
+    'keywords': keywords,
     'author': 'Jonas Grimfelt',
     'author_email': 'grimen@gmail.com',
     'url': 'https://github.com/grimen/python-{name}'.format(name = name),
@@ -111,9 +112,7 @@ config = {
         'Operating System :: POSIX',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
