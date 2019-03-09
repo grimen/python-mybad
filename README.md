@@ -1,5 +1,5 @@
 
-# `mybad` [![Build Status](https://travis-ci.com/grimen/python-mybad.svg?branch=master)](https://travis-ci.com/grimen/python-mybad) [![PyPI version](https://badge.fury.io/py/mybad.svg)](https://badge.fury.io/py/mybad)
+# `mybad` [![PyPI version](https://badge.fury.io/py/mybad.svg)](https://badge.fury.io/py/mybad) [![Build Status](https://travis-ci.com/grimen/python-mybad.svg?branch=master)](https://travis-ci.com/grimen/python-mybad)
 
 *My friendly error base class - for Python.*
 
