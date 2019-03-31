@@ -16,7 +16,7 @@ import setupextras
 # --------------------------------------
 
 name = 'mybad'
-version = '0.1.3'
+version = '0.1.4'
 description = 'My friendly error base class - for Python.'
 keywords = [
     'error',
