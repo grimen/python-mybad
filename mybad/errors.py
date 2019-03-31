@@ -116,9 +116,11 @@ class Error(Exception):
         else:
             _details = None
 
+        has_details = isinstance(self.details, dict) and len(self.details.keys())
+
         _message = ' - '.join(list(filter(bool, [
             _message,
-            _details
+            (has_details and _details),
         ])))
 
         return _message
@@ -133,9 +135,6 @@ class Error(Exception):
 
     @staticmethod
     def object(error, attrs):
-        if not isinstance(error, Error):
-            error = Error(error)
-
         extended_error = Error.cast(error)
 
         return dict({

@@ -24,11 +24,11 @@ def print_money(stash):
         if isinstance(stash, str) and len(stash) > 13:
             raise Exception('Too much money to print: {0}'.format(stash))
 
-        print('PRINT {0}'.format(''.join(stash)))
+        print('PRINT {0}'.format(stash))
 
     except Exception as error:
         raise ToMuchError(error,
-            message = "Out of money printing ink...",
+            message = 'Out of money printing ink...',
             id = hash(stash),
             key = 'too_much',
             code = 400,
@@ -42,5 +42,11 @@ amount = ''
 for dollar in range(42):
     amount += '$'
 
-    print_money(amount)
+    try:
+        print_money(amount)
+
+    except Exception as error:
+        print(str(error))
+
+        raise error
 
