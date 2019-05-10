@@ -72,21 +72,70 @@ PRINT $$$$$$$$$$
 PRINT $$$$$$$$$$$
 PRINT $$$$$$$$$$$$
 PRINT $$$$$$$$$$$$$
-Out of money printing ink... - { stash: '$$$$$$$$$$$$$$' }
+===============================
+     str(error)
+---------------------------
+Out of money printing ink... - {'stash': '$$$$$$$$$$$$$$'}
 
+===============================
+     error.stack
+---------------------------
 Traceback (most recent call last):
-  File "examples/basic.py", line 25, in print_money
+  File "examples/basic.py", line 27, in print_money
     raise Exception('Too much money to print: {0}'.format(stash))
 Exception: Too much money to print: $$$$$$$$$$$$$$
 
-During handling of the above exception, another exception occurred:
+===============================
+     error.inspect()
+---------------------------
+{   'code': 400,
+    'details': {'stash': '$$$$$$$$$$$$$$'},
+    'id': 3563898309523127190,
+    'key': 'too_much',
+    'message': 'Out of money printing ink...',
+    'stack': [   {   'code': ['stash = stash,'],
+                     'file': 'examples/basic.py',
+                     'function': 'print_money',
+                     'line': 38},
+                 {   'code': ['print_money(amount)'],
+                     'file': 'examples/basic.py',
+                     'function': '<module>',
+                     'line': 48}],
+    'type': 'ToMuchError'}
 
-Traceback (most recent call last):
-  File "examples/basic.py", line 45, in <module>
-    print_money(amount)
-  File "examples/basic.py", line 36, in print_money
-    stash = stash,
-__main__.ToMuchError: Out of money printing ink... - {'stash': '$$$$$$$$$$$$$$'}
+
+===============================
+     error.json()
+---------------------------
+{
+    "type": "ToMuchError",
+    "id": 3563898309523127190,
+    "code": 400,
+    "key": "too_much",
+    "message": "Out of money printing ink...",
+    "details": {
+        "stash": "$$$$$$$$$$$$$$"
+    },
+    "stack": [
+        {
+            "file": "examples/basic.py",
+            "function": "print_money",
+            "line": 38,
+            "code": [
+                "stash = stash,"
+            ]
+        },
+        {
+            "file": "examples/basic.py",
+            "function": "<module>",
+            "line": 48,
+            "code": [
+                "print_money(amount)"
+            ]
+        }
+    ]
+}
+
 ```
 
 

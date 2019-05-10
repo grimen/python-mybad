@@ -142,8 +142,38 @@ def load(root = DEFAULT_TEST_ROOT_PATH, pattern = DEFAULT_TEST_FILE_PATTERN):
 
     unittest.defaultTestLoader.discover(root, pattern = pattern)
 
+def bytes2str(data):
+    if isinstance(data, bytes):
+        # print('bytes', data)
+        return data.decode()
+
+    if isinstance(data, str):
+        # print('str', data)
+        return str(data)
+
+    if isinstance(data, dict):
+        # print('dict', data)
+        return dict(map(bytes2str, data.items()))
+
+    if isinstance(data, tuple):
+        # print('tuple', data)
+        return tuple(map(bytes2str, data))
+
+    if isinstance(data, list):
+        # print('list', data)
+        return list(map(bytes2str, data))
+
+    if isinstance(data, set):
+        # print('set', data)
+        return set(map(bytes2str, data))
+
+    return data
+
 def deepdiff(a, b, exclude_types = None):
     exclude_types = exclude_types or [logging.Logger]
+
+    a = bytes2str(a)
+    b = bytes2str(b)
 
     return DeepDiff(a, b, ignore_order = True, report_repetition = True, exclude_types = exclude_types)
 

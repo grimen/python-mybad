@@ -7,6 +7,8 @@ import rootpath
 
 rootpath.append()
 
+import json
+
 
 # =========================================
 #       EXAMPLE
@@ -46,7 +48,27 @@ for dollar in range(42):
         print_money(amount)
 
     except Exception as error:
+        print('===============================')
+        print('     str(error)')
+        print('---------------------------')
         print(str(error))
+        print()
 
-        raise error
+        print('===============================')
+        print('     error.stack')
+        print('---------------------------')
+        print(error.stack)
 
+        print('===============================')
+        print('     error.inspect()')
+        print('---------------------------')
+        print(error.inspect(colors = True, verbose = True))
+        print()
+
+        print('===============================')
+        print('     error.json()')
+        print('---------------------------')
+        print(error.json())
+        print()
+
+        break

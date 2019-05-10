@@ -1,7 +1,8 @@
 setupextras >= 0.1.5
-six >= 1.11.0
-rootpath >= 0.1.0
-inspecta >= 0.1.0
+six >= 1.12.0
+rootpath >= 0.1.1
+inspecta >= 0.1.3
+attributedict >= 0.3.0
 termcolor >= 1.1.0
 
 colour-runner >= 0.0.5
