@@ -3,6 +3,10 @@
 #       DEPS
 # --------------------------------------
 
+import rootpath
+
+rootpath.append()
+
 import sys
 import os
 import inspect
@@ -14,17 +18,13 @@ import logging
 import inspecta
 
 from os import path, environ
+from deepdiff import DeepDiff
+
 try:
     # NOTE on `tox` (2/2): ran into issues with `tox` raising `ncurses` error, so disabling colors when running in `tox` for now
     from colour_runner.result import ColourTextTestResult
 except:
     pass
-
-from deepdiff import DeepDiff
-
-import rootpath
-
-rootpath.append()
 
 from six import PY2, PY3, string_types
 
