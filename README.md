@@ -3,6 +3,7 @@
 
 *My friendly error base class - for Python.*
 
+
 ## Introduction
 
 One in general always needs a application/library specific error base class, but the native errors are very limited in what meta/debugging information they can hold at time they are raised. For better debugging and error reporting/inspection this error base class allows to attach some additonal error context information that can be used to better understand the issue - without having to create custom error formatters, or run debugger.
